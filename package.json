@@ -1,0 +1,19 @@
+{
+  "name": "node-complete-udemy",
+  "version": "1.0.0",
+  "description": "based on udemy course the-complete-nodejs-developer-course-2",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aklibaba/node-complete-udemy.git"
+  },
+  "author": "Aleksander Moloniewicz",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/aklibaba/node-complete-udemy/issues"
+  },
+  "homepage": "https://github.com/aklibaba/node-complete-udemy#readme"
+}
