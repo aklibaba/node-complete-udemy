@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/aklibaba/node-complete-udemy/issues"
   },
-  "homepage": "https://github.com/aklibaba/node-complete-udemy#readme"
+  "homepage": "https://github.com/aklibaba/node-complete-udemy#readme",
+  "dependencies": {
+    "lodash": "^4.17.4"
+  }
 }
