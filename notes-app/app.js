@@ -5,22 +5,25 @@
 console.log('Starting app');
 
 const fs = require('fs');
-const os = require('os');
+const _ = require('lodash');
+const argv = require('yargs')['argv'];
+
 const notes = require('./notes');
-const _= require('lodash');
+const command = argv['_'][0];
 
-console.log(_.isString('abc'));
 
-const userName = os.userInfo()['username'];
-
-const result = notes.addNote();
-console.log(result);
-
-const number = notes.add(1,-2);
-console.log(number);
-
-fs.appendFile('greetings.txt', `Hello ${userName}, you are `, err => {
-  if (err) {console.log('Unable to write to file'); return }
-  console.log('The "data to append" was appended to file!');
-});
-
+if ( command === 'add' ) {
+  notes.addNote(argv['title'], argv['body'])
+}
+else if ( command === 'list' ) {
+  notes.getAll();
+}
+else if ( command === 'fetch' ) {
+  notes.fetch(argv['title'])
+}
+else if ( command === 'remove' ) {
+  notes.remove(argv['title'])
+}
+else {
+  console.log('Command not recognized');
+}
