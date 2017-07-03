@@ -12,16 +12,16 @@ const notes = require('./notes');
 const command = argv['_'][0];
 
 
-if ( command === 'add' ) {
-  notes.addNote(argv['title'], argv['body'])
+if (command === 'add') {
+  const note = notes.addNote(argv['title'], argv['body'])
 }
-else if ( command === 'list' ) {
+else if (command === 'list') {
   notes.getAll();
 }
-else if ( command === 'fetch' ) {
+else if (command === 'fetch') {
   notes.fetch(argv['title'])
 }
-else if ( command === 'remove' ) {
+else if (command === 'remove') {
   notes.remove(argv['title'])
 }
 else {
