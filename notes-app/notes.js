@@ -1,8 +1,6 @@
 /**
  * Created by Aleksander on 2017-06-30.
  */
-console.log('Staring notes.js');
-
 const fs = require('fs');
 
 const notes = exports;
@@ -33,27 +31,30 @@ notes.addNote = (title, body) => {
     console.log(`A note with a title of ${note.title} already exists`);
     return;
   }
-
   notes.push(note);
   saveNotes(notes);
-  console.log(`Succesfully added note`);
-  console.log(`---`);
-  console.log(`Title: ${note.title}`);
-  console.log(`Body: ${note.body}`);
   return note;
 };
 
 notes.getAll = () => {
-  console.log('Getting all notes');
+  return fetchNotes();
 };
 
-notes.fetch = (title) => {
-  console.log('Getting note', title);
+notes.getNote = (title) => {
+  const notes = fetchNotes();
+  return notes.find(note => note.title === title);
 };
 
 notes.remove = (title) => {
-  let notes = fetchNotes();
-  notes = notes.filter(note => note.title !== title);
-  saveNotes(notes);
-  console.log(`removed note: ${title}`);
+  const notes = fetchNotes();
+  const filteredNotes = notes.filter(note => note.title !== title);
+  saveNotes(filteredNotes);
+  return notes.length > filteredNotes.length;
+};
+
+notes.logNote = (note) => {
+  debugger;
+  console.log(`-----`);
+  console.log(`Title: ${note.title}`);
+  console.log(`Body: ${note.body}`);
 };
