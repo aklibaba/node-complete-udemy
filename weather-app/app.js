@@ -1,0 +1,19 @@
+const fs = require('fs');
+const yargs = require('yargs');
+const geocode = require('./geocode/geocode');
+const argv = yargs
+  .options({
+    a: {
+      demand: true,
+      alias: 'address',
+      describe: 'Provide the address o fetch weather for',
+      string: true
+    }
+  })
+  .help()
+  .alias('help', 'h')
+  .argv;
+
+
+geocode.geocodeAddress(argv.address);
+

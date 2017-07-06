@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<style>
+    .person {
+        width: 20px;
+        height: 20px;
+        background-color: #35cb63;
+        position: absolute;
+        top: 0;
+        left: 0;
+        transition: transform 0.3s ease-out;
+        animation-duration: 2s;
+    }
+
+    @keyframes skewRigth {
+        0%   {background-color:red; transform: rotateX(30deg)}
+        100% {background-color:green; transform: rotateX(0)}
+    }
+</style>
+<body>
+
+<div class="person"></div>
+
+<script>
+  const person = document.querySelector('.person');
+
+  document.onkeydown = checkKey;
+
+  function checkKey(e) {
+    e = e || window.event;
+
+    if (e.keyCode == '38') {
+      // up arrow
+      move(person, 'up');
+    }
+    else if (e.keyCode == '40') {
+      // down arrow
+      move(person, 'down');
+    }
+    else if (e.keyCode == '37') {
+      // left arrow
+      move(person, 'left');
+    }
+    else if (e.keyCode == '39') {
+      // right arrow
+      move(person, 'right');
+//      animateSkew(person);
+    }
+  }
+
+  const move = (obj, dir) => {
+    const posX = getComputedTranslateX(obj);
+    const posY = getComputedTranslateY(obj);
+    const speed = 50;
+    switch (dir) {
+      case 'up':
+        translateChange(obj, posX, posY - speed);
+        break;
+      case 'down':
+        translateChange(obj, posX, posY + speed);
+        break;
+      case 'left':
+        translateChange(obj, posX - speed, posY);
+        break;
+      case 'right':
+        translateChange(obj, posX + speed, posY);
+        break;
+    }
+  };
+
+  function animateSkew(obj) {
+    obj.style.animationName = 'skewRigth';
+  }
+
+  function translateChange(obj, x, y) {
+    obj.style.transform = `translate(${x}px, ${y}px)`;
+  }
+
+  function getComputedTranslateY(obj) {
+    const mat = getMatrix(obj);
+    return mat ? parseFloat(mat[1].split(', ')[5]) : 0;
+  }
+
+  function getComputedTranslateX(obj) {
+    const mat = getMatrix(obj);
+    return mat ? parseFloat(mat[1].split(', ')[4]) : 0;
+  }
+
+  function getMatrix(obj) {
+    if (!window.getComputedStyle) return;
+    const style = getComputedStyle(obj),
+      transform = style.transform || style.webkitTransform || style.mozTransform;
+    return transform.match(/^matrix\((.+)\)$/);
+  }
+</script>
+</body>
+</html>
