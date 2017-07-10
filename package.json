@@ -17,8 +17,10 @@
   },
   "homepage": "https://github.com/aklibaba/node-complete-udemy#readme",
   "dependencies": {
+    "express": "^4.15.3",
+    "hbs": "^4.0.0",
     "lodash": "^4.17.4",
-    "yargs": "^4.8.1",
-    "request": "latest"
+    "request": "latest",
+    "yargs": "^4.8.1"
   }
 }
