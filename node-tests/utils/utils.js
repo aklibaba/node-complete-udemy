@@ -4,7 +4,11 @@
 const utils = exports;
 
 utils.add = (a, b) => a + b;
-
+utils.asyncAdd = (a, b, callback) => {
+  setTimeout(() => {
+    callback(a + b);
+  },1000)
+};
 utils.square = (x) => x * x;
 
 utils.setName = (user, fullName) => {
