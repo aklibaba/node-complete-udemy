@@ -2,19 +2,44 @@ const utils = require('./utils');
 const expect = require('expect');
 
 
-it('should add 2 numbers', () => {
+describe('Utils', () => {
 
-  const res = utils.add(5, 5);
-  expect(res).toBe(10, `expected 10, got ${res}`).toBeA('number');
+  describe('#add', () => {
+    it('should add 2 numbers', () => {
+
+      const res = utils.add(5, 5);
+      expect(res).toBe(10, `expected 10, got ${res}`).toBeA('number');
+
+    });
+
+
+    it('should async add two numbers', (done) => {
+      utils.asyncAdd(4, 3, sum => {
+        expect(sum).toBe(7).toBeA('number');
+        done();
+      });
+    });
+    
+  });
+
+
+  it('should square a number', () => {
+    const res = utils.square(5);
+
+    expect(res).toBe(25).toBeA('number');
+
+  });
+
+
+  it('should async square a number', (done) => {
+    utils.asyncSquare(10, (res) => {
+      expect(res).toBe(100).toBeA('number');
+      done();
+    });
+  });
 
 });
 
-it('should square a number', () => {
-  const res = utils.square(5);
-
-  expect(res).toBe(25).toBeA('number');
-
-});
 
 it('should expect some value', () => {
   expect({name: "Alex"}).toEqual({name: "Alex"});
