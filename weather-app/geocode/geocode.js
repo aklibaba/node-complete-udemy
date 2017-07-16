@@ -32,7 +32,6 @@ geocode.geocodeAddress = function (address, callback) {
       };
       callback(null, results);
     }
-
   });
 };
 
